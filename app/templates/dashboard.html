@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <a href="/recipeform" class="btn">Register Form</a><br><br>
+            <form class="d-flex" role="search" method="get" action="/searchrecipe">
+                <input class="form-control me-2" name="q" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+              </form>
+            <center>
+                <h1>Recipe Dashboard</h1>
+                <table border="1px" cellspacing="3px" cellpadding="4px">
+                    <tr>
+                            <th>Recipe_id</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Ingredients</th>
+                            <th>Instructions</th>
+                            <th>Photo</th>
+                            <th>Update</th>
+                            <th>Remove</th>
+                    </tr>
+                    {% for x in allrecipe %}
+                    <tr>
+                        <td>{{x.recipe_id}}</td>
+                        <td>{{x.name}}</td>
+                        <td>{{x.description}}</td>
+                        <td>{{x.ingredients}}</td>
+                        <td>{{x.instructions}}</td>
+                        <td><img src="{{x.photo.url}}" alt="{{x.name}}" width="100px" height="150px"></td>
+                        <td><a href="/updaterecipe/{{x.recipe_id}}">Update</a></td>
+                        <td><a href="/removerecipe/{{x.recipe_id}}">Remove</a></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </center>
+        </div>
+    </div>
+
+</body>
+</html>
